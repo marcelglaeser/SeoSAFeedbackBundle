@@ -150,7 +150,7 @@ assetic:
 ``` twig
 {# Add a panel #}
 
-{% include 'SeoSAFeedbackBundle:Feedback:async-panel.html.twig' %}
+{% include 'SeoSAFeedbackBundle:Feedback:panel.html.twig' %}
 ```
 
 

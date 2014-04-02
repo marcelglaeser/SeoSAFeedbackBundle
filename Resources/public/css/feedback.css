@@ -25,3 +25,15 @@
     margin-left: -25%;
     margin-top: -100px;
 }
+
+.seosa_feedback_panel {
+    position: fixed;
+    z-index: 99;
+    bottom: 0;
+    left: 5%;
+    padding: 10px 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #000000;
+    background: #aeaeae;
+}

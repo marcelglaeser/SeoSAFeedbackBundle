@@ -9,63 +9,66 @@
 {% trans_default_domain 'SeoSAFeedbackBundle' %}
 
 {% block html %}
-    <button data-feedback-button class="feedback">{{ 'Send a feed back'|trans }}</button>
+    <button data-feedback-button class="seosa_feedback_button">{{ 'Send a feed back'|trans }}</button>
 {% endblock %}
 
 {% block js %}
     <script type="text/javascript" language="javascript">
         $(function () {
-            $('[data-feedback-button]').on('click', function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: '{{ path('seo_sa_feedback_create') }}',
-                    method: 'GET',
-                    success: function (form) {
-                        form = $(form);
-                        var overlay = $('<div class="seo_sa_feedback_form_overlay"/>');
-                        overlay.append(form);
-                        $('body').append(overlay);
+            if (!window.seosa_feedback_inited) {
+                window.seosa_feedback_inited = true;
+                $('[data-feedback-button]').on('click', function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: '{{ path('seo_sa_feedback_create') }}',
+                        method: 'GET',
+                        success: function (form) {
+                            form = $(form);
+                            var overlay = $('<div class="seo_sa_feedback_form_overlay"/>');
+                            overlay.append(form);
+                            $('body').append(overlay);
 
-                        overlay.width($(window).width());
-                        overlay.height($(window).height());
-
-                        $(window).resize(function () {
                             overlay.width($(window).width());
                             overlay.height($(window).height());
-                        });
 
-                        overlay.on('click', function () {
-                            $(this).fadeOut('slow', function () {
-                                $(this).remove();
-                            })
-                        });
-
-                        overlay.on('click', 'form', function (e) {
-                            e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true
-                        });
-
-                        form.on('submit', function (e) {
-                            e.preventDefault();
-                            var form = $(this);
-                            $.ajax({
-                                url: form.attr('action'),
-                                method: 'POST',
-                                headers: {'X-HTTP-METHOD-OVERRIDE': 'PUT'},
-                                data: form.serialize(),
-                                success: function (html) {
-                                    form.html('<p>{{ 'Thank you for feed back!'|trans }}</p>');
-                                    setTimeout(function () {
-                                        overlay.trigger('click');
-                                    }, 2000)
-                                },
-                                error: function (response) {
-                                    form.replaceWith(response.responseText);
-                                }
+                            $(window).resize(function () {
+                                overlay.width($(window).width());
+                                overlay.height($(window).height());
                             });
-                        })
-                    }
-                })
-            });
+
+                            overlay.on('click', function () {
+                                $(this).fadeOut('slow', function () {
+                                    $(this).remove();
+                                })
+                            });
+
+                            overlay.on('click', 'form', function (e) {
+                                e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true
+                            });
+
+                            form.on('submit', function (e) {
+                                e.preventDefault();
+                                var form = $(this);
+                                $.ajax({
+                                    url: form.attr('action'),
+                                    method: 'POST',
+                                    headers: {'X-HTTP-METHOD-OVERRIDE': 'PUT'},
+                                    data: form.serialize(),
+                                    success: function (html) {
+                                        form.html('<p>{{ 'Thank you for feed back!'|trans }}</p>');
+                                        setTimeout(function () {
+                                            overlay.trigger('click');
+                                        }, 2000)
+                                    },
+                                    error: function (response) {
+                                        form.replaceWith(response.responseText);
+                                    }
+                                });
+                            })
+                        }
+                    })
+                });
+            }
         });
     </script>
 {% endblock %}

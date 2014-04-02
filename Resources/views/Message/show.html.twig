@@ -1,0 +1,45 @@
+{% extends layout %}
+{% trans_default_domain 'SeoSAFeedbackBundle' %}
+
+{% block seo_sa_feedback_content %}
+    {% block seo_sa_feedback_message_content %}
+        <div class="message">
+            <h2>{{ message }}</h2>
+            <table>
+                <tr>
+                    <td>{{ 'Title'|trans }}</td>
+                    <td>{{ message.title }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'Body'|trans }}</td>
+                    <td>{{ message.body }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'Created At'|trans }}</td>
+                    <td>{{ message.createdAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'Permalink'|trans }}</td>
+                    <td><a href="{{ message.permalink }}">{{ message.permalink }}</a></td>
+                </tr>
+                {% if message is seosa_feedback_signed_message and message.author %}
+                    <tr>
+                        <td>{{ 'Author'|trans }}</td>
+                        <td>{{ message.author }}</td>
+                    </tr>
+                {% endif %}
+                {% if not message.isRead %}
+                    <tr>
+                        <td colspan="2">
+                            <form action="{{ path('seo_sa_feedback_patch_message_read', {'messageId': message.id }) }}" method="POST">
+                                <input type="hidden" name="_method" value="PATCH"/>
+                                <input type="hidden" name="state" value="1"/>
+                                <input type="submit" name="submit" value="{{ 'Mark as read'|trans }}"/>
+                            </form>
+                        </td>
+                    </tr>
+                {% endif %}
+            </table>
+        </div>
+    {% endblock seo_sa_feedback_message_content %}
+{% endblock seo_sa_feedback_content %}

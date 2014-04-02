@@ -1,0 +1,29 @@
+{#
+ # Created by PhpStorm.
+ # User: andrew
+ # Date: 02.04.14
+ # Time: 9:57
+ # Author: Kluev Andrew
+ # Contact: Kluev.Andrew@gmail.com
+ #}
+{% trans_default_domain 'SeoSAFeedbackBundle' %}
+
+{% spaceless %}
+    <td colspan="2" style="text-align: center">
+        {% if not object.isRead %}
+                <form action="{{ path('seo_sa_feedback_patch_message_read', {'messageId': object.id }) }}" method="POST">
+                    <input type="hidden" name="_method" value="PATCH"/>
+                    <input type="hidden" name="state" value="1"/>
+                    <input type="submit" name="submit" class="btn btn-primary" value="{{ 'Mark as read'|trans }}"/>
+                </form>
+        {% else %}
+            <form action="{{ path('seo_sa_feedback_patch_message_read', {'messageId': object.id }) }}" method="POST">
+                <input type="hidden" name="_method" value="PATCH"/>
+                <input type="hidden" name="state" value="0"/>
+                <input type="submit" name="submit" class="btn btn-warning" value="{{ 'Mark as not read'|trans }}"/>
+            </form>
+        {% endif %}
+    </td>
+{% endspaceless %}
+
+

@@ -1,0 +1,17 @@
+parameters:
+    seo_sa_feedback.sonata_admin.class: SeoSA\FeedbackBundle\SonataAdmin\MessageAdmin
+    seo_sa_feedback.sonata_admin.controller.class: SeoSA\FeedbackBundle\Controller\MessageAdminController
+
+services:
+    seo_sa_feedback.sonata_admin.controller:
+        class: %seo_sa_feedback.sonata_admin.controller.class%
+        calls:
+            - [setContainer, ["@service_container"]]
+    seo_sa_feedback.sonata_admin:
+        class: %seo_sa_feedback.sonata_admin.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: %seo_sa_feedback.sonata_admin.label%, group: %seo_sa_feedback.sonata_admin.group% }
+        arguments:
+            - ~
+            - %seo_sa_feedback.message.class%
+            - seo_sa_feedback.sonata_admin.controller

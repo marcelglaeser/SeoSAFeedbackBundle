@@ -1,0 +1,43 @@
+{#
+ # Created by PhpStorm.
+ # User: andrew
+ # Date: 01.04.14
+ # Time: 15:32
+ # Author: Kluev Andrew
+ # Contact: Kluev.Andrew@gmail.com
+ #}
+{% trans_default_domain 'SeoSAFeedbackBundle' %}
+
+<table class="messages_table">
+    <thead>
+    <tr>
+        <td>{{ 'ID'|trans }}</td>
+        <td>{{ 'Title'|trans }}</td>
+        <td>{{ 'Created at'|trans }}</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    {% if messages|length %}
+        {% for message in messages %}
+            <tr>
+                <td>{{ message.id }}</td>
+                <td>{{ message.title }}</td>
+                <td>
+                    <span class="date">{{ message.createdAt|date('Y-m-d H:i:s') }}</span>
+                    {% if message is seosa_feedback_signed_message and message.author %}
+                        <span class="date">{{ 'Author'|trans }}: {{ message.author }}</span>
+                    {% endif %}
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td class="4">{{ 'No messages'|trans }}</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

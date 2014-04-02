@@ -1,0 +1,24 @@
+parameters:
+    seo_sa_feedback.message.manager.default.class: SeoSA\FeedbackBundle\Entity\MessageManager
+    seo_sa_feedback.twig.extension.class: SeoSA\FeedbackBundle\Twig\FeedbackExtension
+    seo_sa_feedback.message.form_type.class: SeoSA\FeedbackBundle\Form\MessageType
+
+services:
+    seo_sa_feedback.message.manager.default:
+        class: %seo_sa_feedback.message.manager.default.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @security.context
+            - %seo_sa_feedback.message.class%
+
+    seo_sa_feedback.twig.extension:
+        class: %seo_sa_feedback.twig.extension.class%
+        tags:
+            - { name: twig.extension }
+
+    seo_sa_feedback.message.form_type:
+        class: %seo_sa_feedback.message.form_type.class%
+        arguments:
+            - %seo_sa_feedback.message.class%
+        tags:
+            - { name: form.type, alias: seo_sa_feedback_message }

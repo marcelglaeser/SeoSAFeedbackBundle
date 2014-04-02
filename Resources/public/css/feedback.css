@@ -1,0 +1,27 @@
+/**
+ * Created by PhpStorm.
+ * User: andrew
+ * Date: 02.04.14
+ * Time: 11:10
+ * Author: Kluev Andrew
+ * Contact: Kluev.Andrew@gmail.com
+ */
+.seo_sa_feedback_form_overlay {
+    position: fixed;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.75);
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
+
+.seo_sa_feedback_form_overlay .seo_sa_feedback_form {
+    position: absolute;
+    width: 50%;
+    height: 200px;
+    background: white;
+    left: 50%;
+    top: 50%;
+    margin-left: -25%;
+    margin-top: -100px;
+}

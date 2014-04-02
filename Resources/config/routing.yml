@@ -1,0 +1,4 @@
+seo_sa_realty_realties:
+    type:     rest
+    resource: SeoSA\FeedbackBundle\Controller\FeedbackController
+    name_prefix: seo_sa_feedback_

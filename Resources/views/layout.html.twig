@@ -1,0 +1,18 @@
+{% trans_default_domain 'SeoSAFeedbackBundle' %}
+{% spaceless %}
+    {% if not app.request.isXmlHttpRequest %}
+        <!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>{{ 'Feedback'|trans }}</title>
+        </head>
+        <body>
+    {% endif %}
+    {% block seo_sa_feedback_content %}
+    {% endblock seo_sa_feedback_content %}
+    {% if not app.request.isXmlHttpRequest %}
+        </body>
+        </html>
+    {% endif %}
+{% endspaceless %}

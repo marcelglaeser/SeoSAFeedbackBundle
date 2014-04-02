@@ -1,0 +1,18 @@
+{% extends layout %}
+{% trans_default_domain 'SeoSAFeedbackBundle' %}
+
+{% block seo_sa_feedback_content %}
+    {% block seo_sa_feedback_new_messages %}
+        <div>
+            <h2>{{ 'New messages'|trans }}</h2>
+            {% include 'SeoSAFeedbackBundle:Message:list_content.html.twig' with {'messages': not_checked_messages} %}
+        </div>
+    {% endblock seo_sa_feedback_new_messages %}
+
+    {% block seo_sa_feedback_old_messages %}
+        <div>
+            <h2>{{ 'Old messages'|trans }}</h2>
+            {% include 'SeoSAFeedbackBundle:Message:list_content.html.twig' with {'messages': checked_messages} %}
+        </div>
+    {% endblock seo_sa_feedback_old_messages %}
+{% endblock seo_sa_feedback_content %}

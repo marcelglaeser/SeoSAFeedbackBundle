@@ -1,0 +1,38 @@
+{
+    "name": "seosa/feedback-bundle",
+    "type": "symfony-bundle",
+    "description": "This Bundle provides feedback functionality for Symfony2 applications",
+    "keywords": ["feedback", "bug-reports", "bundle", "symfony2"],
+    "homepage": "https://github.com/kluevandrew/SeoSAFeedbackBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kluev Andrew",
+            "email": "kluev.andrew@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "friendsofsymfony/rest-bundle": "~1.2",
+        "jms/serializer-bundle": "~0.13",
+        "symfony/framework-bundle": ">=2.3",
+        "symfony/security-bundle": ">=2.3",
+        "symfony/yaml": ">=2.3",
+        "symfony/form": ">=2.3",
+        "symfony/validator": ">=2.3",
+        "symfony/twig-bundle": ">=2.3",
+        "symfony/expression-language": ">=2.3",
+        "doctrine/doctrine-bundle": "~1.1",
+        "doctrine/orm": ">=2.3"
+    },
+    "suggest": {
+        "sonata-project/admin-bundle": "Allows for SonataAdmin integration."
+    },
+    "require-dev": {
+        "sonata-project/admin-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "SeoSA\\FeedbackBundle": "" }
+    },
+    "target-dir": "SeoSA/FeedbackBundle"
+}

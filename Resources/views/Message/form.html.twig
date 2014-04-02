@@ -1,0 +1,9 @@
+{% extends layout %}
+{% trans_default_domain 'SeoSAFeedbackBundle' %}
+
+{% block seo_sa_feedback_content %}
+    <form class="seo_sa_feedback_form" action="{{ path('seo_sa_feedback_put') }}" method="POST">
+        {{ form_widget(form) }}
+        <input type="hidden" name="_method" value="PUT"/>
+    </form>
+{% endblock seo_sa_feedback_content %}

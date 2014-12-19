@@ -90,7 +90,7 @@ class MessageManager implements MessageManagerInterface
      */
     public function saveMessage(MessageInterface $message)
     {
-        if ($message instanceof SignedMessageInterface) {
+        if ($message instanceof SignedMessageInterface && !$message->getAuthor()) {
             $token = $this->securityContext->getToken();
             if ($token) {
                 $user = $token->getUser();
